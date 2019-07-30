@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  * @author Chandra Bhan
  */
 @ControllerAdvice
-public class ProductExceptionHandler {
+public class UserExceptionHandler {
 
-	@ExceptionHandler(value = ProductNotFoundException.class)
-	public ResponseEntity<Object> exception(ProductNotFoundException exception) {
+	@ExceptionHandler(value = UserNotFoundException.class)
+	public ResponseEntity<Object> exception(UserNotFoundException exception) {
 		return new ResponseEntity<>(exception.getErrorMessage(), HttpStatus.valueOf(exception.getErrorCode()));
 	}
 

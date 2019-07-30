@@ -22,8 +22,8 @@ public class ValidationErrorParser {
 	private static final Map<String, String> ERROR_CODES_MAP = Collections
 			.unmodifiableMap(new HashMap<String, String>() {
 				{
-					put("INCORRECT_PRODUCT_REQUEST", "_ERR_PRODUCT_REQUEST_REQUIRED");
-					put("INCORRECT_PRICE_DETAILS", "_ERR_PRICE_DETAILS_REQUIRED");
+					put("INCORRECT_USER_REQUEST", "_ERR_USER_REQUEST_REQUIRED");
+					
 				}
 			});
 
@@ -33,15 +33,12 @@ public class ValidationErrorParser {
 			for (FieldError error : errors.getFieldErrors()) {
 				String errorKey = error.getCodes()[1];
 				errorCodes.add(ERROR_CODES_MAP.get(errorKey));
-				log.info("op={}, status={} , desc=validation error with errorKey : {}", "VALIDATION_ERRORS",
-						STATUS_NOT_OK, errorKey);
+			
 			}
 
 			for (ObjectError error : errors.getGlobalErrors()) {
 				String errorKey = error.getCodes()[1];
 				errorCodes.add(ERROR_CODES_MAP.get(errorKey));
-				log.info("op={}, status={} , desc=validation error with errorKey : {}", "VALIDATION_ERRORS",
-						STATUS_NOT_OK, errorKey);
 			}
 			if (errorCodes.size() > 0) {
 				throw new InvalidInputException(errorCodes);

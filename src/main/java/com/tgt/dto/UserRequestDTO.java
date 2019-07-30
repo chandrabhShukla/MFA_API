@@ -6,24 +6,20 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ProductRequestDTO {
+public class UserRequestDTO {
 
 	@Expose
-	@SerializedName("product_id")
+	@SerializedName("user_id")
 	@Valid
 	private String id;
 
 	@Expose
-	@SerializedName("product_name")
+	@SerializedName("user_name")
 	@Valid
 	private String name;
 
-	@Expose
-	@SerializedName("product_price")
-	@Valid
-	private PriceRequestDTO price;
 
-	@JsonProperty("product_id")
+	@JsonProperty("user_id")
 	public String getId() {
 		return id;
 	}
@@ -32,7 +28,7 @@ public class ProductRequestDTO {
 		this.id = id;
 	}
 
-	@JsonProperty("product_name")
+	@JsonProperty("user_name")
 	public String getName() {
 		return name;
 	}
@@ -41,13 +37,5 @@ public class ProductRequestDTO {
 		this.name = name;
 	}
 
-	@JsonProperty("product_price")
-	public PriceRequestDTO getPrice() {
-		return price;
-	}
-
-	public void setPrice(PriceRequestDTO price) {
-		this.price = price;
-	}
 
 }
