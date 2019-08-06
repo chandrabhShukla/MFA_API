@@ -25,6 +25,9 @@ import com.tgt.mapper.UserRequestMapper;
 import com.tgt.service.UserService;
 import com.tgt.validator.UserRequestValidator;
 import static com.tgt.validator.ValidationErrorParser.processErrors;
+
+import java.util.Optional;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -63,18 +66,16 @@ public class UserController {
 	 */
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Object> getUserDetails(@NotNull @PathVariable String id) {
-		
+        	User user = userService.findUserById(id);
+        	
 
-        	User user = userService.getUser(id);
-
-      		if (user == null) {
-     		
-		throw new UserNotFoundException(ExceptionErrorCode.DATA_NOT_FOUND);
-	}
-
+  		if (user == null) {
+   		
+           throw new UserNotFoundException(ExceptionErrorCode.DATA_NOT_FOUND);
+  		}
 		UserRequestDTO userRequestDTO = userRequestMapper.mapUserRequestDomainToDTO(user);
 
-		return new ResponseEntity<>(userRequestDTO, HttpStatus.OK);
+	return new ResponseEntity<>(userRequestDTO, HttpStatus.OK);
 	}
 	
 	@RequestMapping(path = "/", method = RequestMethod.POST)
@@ -85,13 +86,14 @@ public class UserController {
 		processErrors(bindingResult);
 		User user = userRequestMapper.mapUserRequestDTOToDomain(userRequestDTO);
 
-		if (userService.getUser(user.getId()) != null) {
+		if (userService.findUserById(user.getId()) != null) {
 			throw new UserNotFoundException(ExceptionErrorCode.DUPLICATE_DATA_PERSIST_ERROR);
 		}
 
-		userService.add(user);
+		userService.createUser(user);
 
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-
+	
+	
 }

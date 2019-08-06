@@ -20,7 +20,7 @@ public class UserRequestValidator implements Validator {
 	public void validate(Object target, Errors errors) {
 		UserRequestDTO userRequestDTO = (UserRequestDTO) target;
 		if (Objects.isNull(userRequestDTO) || StringUtils.isEmpty(userRequestDTO.getId())
-				|| StringUtils.isEmpty(userRequestDTO.getName()))
+				|| StringUtils.isEmpty(userRequestDTO.getFirstName())|| StringUtils.isEmpty(userRequestDTO.getLastName()))
 			errors.reject("INCORRECT_USER_REQUEST");
 
 	}

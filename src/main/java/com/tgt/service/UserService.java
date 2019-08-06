@@ -1,34 +1,46 @@
 package com.tgt.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import java.util.Collection;
 
 import com.tgt.domain.User;
-import com.tgt.repositories.UserRepository;
-
-@Service
-public class UserService {
-
-	@Autowired
-	private UserRepository userRepository;
 
 
+public interface UserService {
 
-	public void add(User user) {
-		userRepository.add(user);
+	/**
+	 * Method to create new employees in the db using mongo-db repository.
+	 * @param emp
+	 */
+	public void createUser(User user);
 
-	}
+	/**
+	 * Method to fetch all employees from the db using mongo-db repository.
+	 * @return
+	 */
+	public Collection<User> getAllUsers();
 
-	public User getUser(String userID) {
+	/**
+	 * Method to fetch employee by id using mongo-db repository.
+	 * @param id
+	 * @return
+	 */
+	public User findUserById(String id);
 
-		User user = userRepository.getUser(userID);
+	/**
+	 * Method to delete employee by id using mongo-db repository.
+	 * @param id
+	 */
+	public void deleteUserById(String id);
 
-		if (user == null)
-			return null;
+	/**
+	 * Method to update employee by id using mongo-db repository.
+	 * @param id
+	 */
+	public void updateUser(User user);
 
-
-		return user;
-
-	}
+	/**
+	 * Method to delete all employees using mongo-db repository.
+	 */
+	public void deleteAllUsers();
 
 }

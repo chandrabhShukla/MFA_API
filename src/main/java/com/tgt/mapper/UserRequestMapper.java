@@ -15,8 +15,12 @@ public class UserRequestMapper {
 		UserRequestDTO userRequestDTO = new UserRequestDTO();
 
 		userRequestDTO.setId(user.getId());
-		userRequestDTO.setName(user.getName());
-		
+		userRequestDTO.setFirstName(user.getFirstName());
+		userRequestDTO.setLastName(user.getLastName());
+		userRequestDTO.setDeviceName(user.getDeviceName());
+		userRequestDTO.setLocation(user.getLocation());
+		userRequestDTO.setMobileNumber(user.getMobileNumber());
+		userRequestDTO.setMobile(user.getMobile());
 		return userRequestDTO;
 	}
 
@@ -24,8 +28,12 @@ public class UserRequestMapper {
 		User user = new User();
 
 		user.setId(userRequestDTO.getId());
-		user.setName(userRequestDTO.getName());
-		
+		user.setFirstName(userRequestDTO.getFirstName());
+        user.setLastName(userRequestDTO.getLastName());
+        user.setLocation(userRequestDTO.getLocation());
+        user.setMobile(userRequestDTO.getMobile());
+        user.setMobileNumber(userRequestDTO.getMobileNumber());
+        user.setDeviceName(userRequestDTO.getDeviceName());        
 		return user;
 	}
 }

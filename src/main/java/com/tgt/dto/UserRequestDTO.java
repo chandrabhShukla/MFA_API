@@ -12,12 +12,46 @@ public class UserRequestDTO {
 	@SerializedName("user_id")
 	@Valid
 	private String id;
+	
+	@Expose
+	@SerializedName("device_name")
+	@Valid
+	private String deviceName;
+	
+	@Expose
+	@SerializedName("mobile_number")
+	@Valid
+	private String mobileNumber;
+	@Expose
+	@SerializedName("mobile")
+	@Valid
+	private int mobile;
+	
 
 	@Expose
-	@SerializedName("user_name")
+	@SerializedName("first_name")
 	@Valid
-	private String name;
+	private String firstName;
+    
+	@Expose
+	@SerializedName("last_name")
+	@Valid
+	private String lastName;
+	
+	@JsonProperty("last_name")
+	public String getLastName() {
+		return lastName;
+	}
 
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	@Expose
+	@SerializedName("location")
+	@Valid
+	private String location;
+	
 
 	@JsonProperty("user_id")
 	public String getId() {
@@ -28,14 +62,50 @@ public class UserRequestDTO {
 		this.id = id;
 	}
 
-	@JsonProperty("user_name")
-	public String getName() {
-		return name;
+
+	
+	@JsonProperty("location")
+	public String getLocation() {
+		return location;
+	}
+    @JsonProperty("first_name")
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
+	public void setLocation(String location) {
+		this.location = location;
+	}
+    @JsonProperty("device_name")
+	public String getDeviceName() {
+		return deviceName;
+	}
+
+	public void setDeviceName(String deviceName) {
+		this.deviceName = deviceName;
+	}
+    @JsonProperty("mobile_number")
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+    @JsonProperty("mobile")
+	public int getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(int mobile) {
+		this.mobile = mobile;
+	}
+	
+    
+    
 
 }
