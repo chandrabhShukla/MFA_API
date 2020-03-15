@@ -50,11 +50,8 @@ public class UserController {
 
 	@Autowired
 	private UserRequestMapper userRequestMapper;
-	
 
-
-
-
+	// inut binder added to check data
 	@InitBinder("userRequestDTO")
 	protected void initBinderForUser(WebDataBinder binder) {
 		binder.addValidators(new UserRequestValidator());
