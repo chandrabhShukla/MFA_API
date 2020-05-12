@@ -71,6 +71,7 @@ public class UserController {
 
 			throw new UserNotFoundException(ExceptionErrorCode.DATA_NOT_FOUND);
 		}
+		System.out.println("inside controller");
 		UserRequestDTO userRequestDTO = userRequestMapper.mapUserRequestDomainToDTO(user);
 
 		return new ResponseEntity<>(userRequestDTO, HttpStatus.OK);
