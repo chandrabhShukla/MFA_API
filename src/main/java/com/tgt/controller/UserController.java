@@ -31,7 +31,7 @@ import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Api to fetch  and create new user
+ * Api to fetch and create new user
  * 
  * @author Chandra Bhan
  */
@@ -54,6 +54,7 @@ public class UserController {
 	// inut binder added to check data
 	@InitBinder("userRequestDTO")
 	protected void initBinderForUser(WebDataBinder binder) {
+
 		binder.addValidators(new UserRequestValidator());
 	}
 
@@ -63,23 +64,23 @@ public class UserController {
 	 */
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity<Object> getUserDetails(@NotNull @PathVariable String id) {
-        	User user = userService.findUserById(id);
-        	
+		User user = userService.findUserById(id);
 
-  		if (user == null) {
-   		
-           throw new UserNotFoundException(ExceptionErrorCode.DATA_NOT_FOUND);
-  		}
+		System.out.println("inside controller");
+		if (user == null) {
+
+			throw new UserNotFoundException(ExceptionErrorCode.DATA_NOT_FOUND);
+		}
 		UserRequestDTO userRequestDTO = userRequestMapper.mapUserRequestDomainToDTO(user);
 
-	return new ResponseEntity<>(userRequestDTO, HttpStatus.OK);
+		return new ResponseEntity<>(userRequestDTO, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(path = "/", method = RequestMethod.POST)
 	public ResponseEntity<?> createUser(@NotNull @RequestBody @Valid UserRequestDTO userRequestDTO,
 			BindingResult bindingResult) {
-		//final Stopwatch stopwatch = Stopwatch.createUnstarted().start();
-		
+		// final Stopwatch stopwatch = Stopwatch.createUnstarted().start();
+
 		processErrors(bindingResult);
 		User user = userRequestMapper.mapUserRequestDTOToDomain(userRequestDTO);
 
@@ -91,6 +92,5 @@ public class UserController {
 
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
-	
-	
+
 }
